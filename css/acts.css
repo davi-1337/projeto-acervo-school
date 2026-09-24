@@ -1,0 +1,329 @@
+/* O ACERVO — css/acts.css
+   Uma sala por folha. Tudo aqui é etiqueta de museu, poeira e luz de lâmpada fraca. */
+
+/* ============ SALA I · ÁTRIO ============ */
+
+.atrio {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4vh; text-align: center; padding: 12vh 6vw 10vh;
+}
+.catraca {
+  position: absolute; left: 5vw; bottom: 12vh;
+  display: flex; align-items: baseline; gap: 10px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--fumaca);
+}
+.catraca-n { font-family: var(--serif); font-size: 26px; letter-spacing: 0; color: var(--osso-fraco); }
+.titulo.grande {
+  font-size: min(5.2vw, 9.5vh); font-weight: 300;
+  letter-spacing: 0.22em; text-indent: 0.22em; color: var(--osso);
+}
+.atrio .sub {
+  font-style: italic; color: var(--osso-fraco);
+  font-size: clamp(17px, 2vw, 25px); min-height: 1.5em; letter-spacing: 0.03em;
+}
+.pergunta {
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  opacity: 0; transition: opacity 1.8s ease-out;
+}
+.pergunta.on { opacity: 1; }
+.pergunta.off { opacity: 0; pointer-events: none; }
+.pergunta-txt { font-size: clamp(19px, 2.3vw, 28px); color: var(--osso); }
+.botoes { display: flex; gap: 22px; }
+.btn {
+  background: transparent; border: 1px solid rgba(233, 226, 209, 0.28);
+  color: var(--osso-fraco); font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.28em; text-transform: uppercase; padding: 13px 32px;
+  cursor: none; transition: color 0.7s, background 0.7s, letter-spacing 0.7s, border-color 0.7s;
+}
+.btn:hover { color: var(--breu); background: var(--osso); letter-spacing: 0.55em; border-color: var(--osso); }
+.btn.spent { opacity: 0.25; pointer-events: none; }
+
+.selo {
+  position: relative; width: min(200px, 26vh); height: min(200px, 26vh);
+  display: grid; place-items: center;
+  opacity: 0; transition: opacity 2.4s ease-out;
+}
+.selo.on { opacity: 1; animation: aparecer 2.4s ease-out both; }
+.selo-svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.selo-trilha { fill: none; stroke: rgba(233, 226, 209, 0.12); stroke-width: 1; }
+.selo-arco {
+  fill: none; stroke: var(--osso); stroke-width: 1.5;
+  stroke-dasharray: 540; stroke-dashoffset: 540;
+  transition: stroke-dashoffset 0.14s linear;
+}
+.selo-core {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(233, 226, 209, 0.85), rgba(233, 226, 209, 0) 72%);
+  opacity: 0.15;
+  transition: transform 0.14s linear, opacity 0.4s linear;
+}
+.selo-batida {
+  position: absolute; left: 50%; bottom: -34px; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.22em; color: var(--osso-fraco);
+}
+.selo.pulse .selo-core { animation: batida 0.62s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes batida { 0% { transform: scale(0.86); } 26% { transform: scale(1.42); } 100% { transform: scale(1); } }
+
+.instrucao {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--cinza);
+  opacity: 0; transition: opacity 1.8s ease-out;
+}
+.instrucao:not([hidden]) { opacity: 1; }
+.instrucao.explicito { color: var(--osso); animation: piscar 2.6s steps(2) infinite; }
+@keyframes piscar { 0%, 60% { opacity: 1; } 61%, 100% { opacity: 0.42; } }
+
+/* Saídas opcionais: recusar é sempre um botão visível, nunca um segredo. */
+.desviar, .recusar, .deixar {
+  align-self: center; margin-top: 6px; padding: 10px 24px;
+  background: transparent; border: 1px solid rgba(236, 230, 216, 0.22);
+  color: var(--fumaca); font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase; cursor: none;
+  transition: color 0.6s linear, border-color 0.6s linear, background 0.6s linear;
+  opacity: 0;
+}
+.desviar.on, .recusar, .deixar { opacity: 1; animation: aparecer 1.8s ease-out both; }
+.desviar:hover, .recusar:hover, .deixar:hover {
+  color: var(--osso); border-color: var(--osso); background: rgba(236, 230, 216, 0.06);
+}
+.btn.fraco { color: var(--fumaca); border-color: rgba(236, 226, 209, 0.18); }
+.decisoes {
+  position: absolute; left: 50%; bottom: 1.6vh; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 16px; transition: opacity 1.2s linear;
+}
+.decisoes-nota { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--fumaca); text-transform: uppercase; }
+.porta-nome {
+  position: absolute; left: 50%; bottom: -26px; transform: translateX(-50%);
+  white-space: nowrap; font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--osso-fraco);
+}
+
+/* ============ SALA II · ARQUITETURA ============ */
+
+.arq { position: absolute; inset: 0; }
+.porta {
+  position: absolute; top: 0; left: 0; width: 124px; height: 184px;
+  border: 1px solid rgba(233, 226, 209, 0.42);
+  background: radial-gradient(circle at 50% 62%, rgba(233, 226, 209, 0.24), rgba(233, 226, 209, 0.04) 58%, transparent 76%);
+  box-shadow: 0 0 70px rgba(233, 226, 209, 0.18), inset 0 0 46px rgba(233, 226, 209, 0.14);
+  display: grid; place-items: center;
+  will-change: transform, opacity;
+  transition: opacity 0.5s linear;
+}
+.porta-num { font-family: var(--serif); font-size: 36px; color: var(--osso); letter-spacing: 0.08em; }
+.travessia {
+  position: absolute; left: 50%; bottom: 13vh; transform: translateX(-50%);
+  width: min(380px, 64vw); text-align: center;
+}
+.travessia::before { content: ""; display: block; height: 1px; width: 100%; background: rgba(236, 230, 216, 0.16); }
+.travessia-barra { display: block; height: 1px; width: 0; margin-top: -1px; background: var(--osso); transition: width 0.18s linear; }
+.travessia-txt {
+  display: block; margin-top: 12px; font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--osso-fraco);
+}
+.olhos-fechados {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  font-family: var(--serif); font-style: italic; font-size: clamp(20px, 3vw, 34px);
+  color: rgba(233, 226, 209, 0.55); opacity: 0; pointer-events: none;
+}
+.arq-eco {
+  position: absolute; font-family: var(--serif); font-style: italic;
+  font-size: 21px; color: rgba(233, 226, 209, 0.26); opacity: 0;
+  transition: opacity 1.6s ease-out; pointer-events: none;
+}
+.arq-eco.on { opacity: 1; }
+
+/* ============ SALA III · LEGENDAS ============ */
+
+.leg { position: absolute; inset: 0; display: flex; flex-direction: column; }
+.parede {
+  flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr);
+  gap: 13px; padding: 66px 5vw 14px; min-height: 0;
+}
+.quadro {
+  position: relative; overflow: hidden; background: #0a0a0c;
+  border: 1px solid rgba(233, 226, 209, 0.15);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.8s linear, box-shadow 0.8s linear;
+}
+.quadro img { width: 100%; height: 100%; object-fit: contain; opacity: 0.94; padding: 4px; filter: contrast(1.06); transition: opacity 1.4s linear, transform 2.4s ease-out; }
+/* Modo degradado (arquivo aberto sem servidor): as imagens vêm cruas do disco. */
+.sem-pixels .quadro img { filter: grayscale(1) contrast(1.16) brightness(1.04); }
+.quadro:hover img { opacity: 1; transform: scale(1.025); }
+.quadro.alvo { border-color: rgba(233, 226, 209, 0.9); box-shadow: 0 0 0 1px rgba(233, 226, 209, 0.35), 0 0 46px rgba(233, 226, 209, 0.14); }
+.quadro.certo { border-color: var(--osso); }
+.quadro.pisca { animation: quadro-pisca 0.28s steps(2); }
+@keyframes quadro-pisca { 0% { border-color: rgba(233,226,209,0.9); } 100% { border-color: rgba(233,226,209,0.15); } }
+.vazio-campo {
+  width: 100%; height: 100%; display: flex; flex-direction: column; gap: 12px;
+  align-items: center; justify-content: center;
+  background: repeating-linear-gradient(45deg, #0a0a0c 0 7px, #0d0d12 7px 14px);
+}
+.vazio-x { font-family: var(--serif); font-size: 42px; color: rgba(236, 230, 216, 0.16); }
+.vazio-txt {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--fumaca);
+}
+.legenda-posta {
+  position: absolute; left: 0; right: 0; bottom: 0; min-height: 2.6em;
+  padding: 10px 12px; font-family: var(--mono); font-size: 11px; line-height: 1.45;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--osso-fraco);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0));
+}
+.legenda-posta.certa { color: var(--osso); }
+.ficha-tecnica {
+  position: absolute; inset: 0; padding: 18px; display: flex; flex-direction: column; gap: 7px;
+  background: rgba(5, 5, 7, 0.92); opacity: 0; transition: opacity 1.1s ease-out;
+  font-family: var(--mono); font-size: 11px; line-height: 1.5; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--cinza); pointer-events: none; overflow: hidden;
+}
+.ficha-tecnica.on { opacity: 1; }
+.ficha-tecnica b { font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: 0.03em; text-transform: none; color: var(--osso); }
+.ficha-tecnica .nota { font-family: var(--serif); font-style: italic; font-size: 15px; letter-spacing: 0.01em; text-transform: none; color: var(--osso-fraco); line-height: 1.42; }
+.ficha-tecnica .fonte { color: var(--fumaca); }
+.bandeja { padding: 0 5vw 5vh; display: flex; flex-direction: column; gap: 11px; }
+.bandeja-titulo { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fumaca); }
+.legendas { display: flex; flex-wrap: wrap; gap: 9px; }
+.legenda {
+  border: 1px solid rgba(233, 226, 209, 0.2); padding: 9px 14px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--osso-fraco); background: rgba(10, 10, 12, 0.78);
+  cursor: none; transition: color 0.5s, border-color 0.5s, background 0.5s;
+}
+.legenda:hover { color: var(--osso); border-color: rgba(236, 230, 216, 0.55); }
+/* Selecionada: a legenda é o que você tem na mão até escolher a parede. */
+.legenda.selecionada {
+  color: var(--breu); background: var(--osso); border-color: var(--osso);
+  box-shadow: 0 0 34px rgba(236, 230, 216, 0.28);
+}
+.quadro.alvo { border-color: rgba(236, 230, 216, 0.85); }
+
+/* ============ SALA IV · ESPELHO ============ */
+
+.esp { position: absolute; inset: 0; }
+.traco-canal {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  opacity: 0.52; mix-blend-mode: screen; pointer-events: none;
+}
+.duplo {
+  position: absolute; top: 0; left: 0; width: 120px; height: 120px;
+  display: grid; place-items: center; will-change: transform;
+}
+.duplo img {
+  width: 92%; height: 92%; object-fit: contain;
+  filter: grayscale(1) contrast(1.32) brightness(calc(0.5 + var(--prox, 0) * 0.85));
+  opacity: calc(0.42 + var(--prox, 0) * 0.58);
+  transition: filter 0.3s linear, opacity 0.3s linear;
+}
+.duplo .anel {
+  position: absolute; inset: -14px; border-radius: 50%;
+  border: 1px solid rgba(233, 226, 209, calc(0.12 + var(--prox, 0) * 0.5));
+}
+.contato {
+  position: absolute; left: 50%; bottom: 16vh; transform: translateX(-50%);
+  width: min(320px, 62vw); height: 1px; background: rgba(233, 226, 209, 0.16);
+}
+.contato-barra { height: 100%; width: 0; background: var(--osso); transition: width 0.18s linear; }
+.contato-txt {
+  position: absolute; left: 50%; bottom: 11.5vh; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--osso-fraco); text-align: center;
+}
+.veu-olho {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 18%, rgba(0, 0, 0, 0.92) 72%);
+}
+
+/* ============ SALA V · CONTAGEM ============ */
+
+.cont {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px;
+}
+.veu-numero {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  mix-blend-mode: screen; opacity: 0.9; pointer-events: none;
+}
+.cont-pergunta, .cont-estado { position: relative; }
+.cont-pergunta {
+  font-family: var(--serif); font-style: italic; font-size: clamp(17px, 2.3vw, 28px);
+  color: var(--osso-fraco); letter-spacing: 0.03em;
+}
+.cont-entrada { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.digitos {
+  font-family: var(--serif); font-size: clamp(42px, 7vw, 104px); font-weight: 300;
+  letter-spacing: 0.12em; color: var(--osso); text-shadow: 0 0 44px rgba(0, 0, 0, 1);
+}
+.teclado { display: grid; grid-template-columns: repeat(3, 48px); gap: 6px; }
+.tecla {
+  font-family: var(--mono); font-size: 11px; color: var(--osso-fraco);
+  background: rgba(7, 7, 10, 0.6); border: 1px solid rgba(233, 226, 209, 0.18);
+  padding: 9px 0; cursor: none; transition: color 0.35s, background 0.35s, border-color 0.35s;
+}
+.tecla:hover { color: var(--breu); background: var(--osso); border-color: var(--osso); }
+.tecla.largo { grid-column: span 3; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
+.cont-estado {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--cinza); min-height: 1.4em;
+}
+
+/* ============ SALA VI · ACERVO ============ */
+
+.acv {
+  position: absolute; inset: 0;
+  display: grid; grid-template-columns: 1.3fr 0.85fr; gap: 4vw;
+  padding: 9vh 5vw 13vh; align-items: center;
+}
+.parede-final { display: flex; align-items: flex-end; gap: 3vw; min-width: 0; }
+.moldura { display: flex; flex-direction: column; gap: 13px; flex: 1; min-width: 0; }
+.moldura-interna {
+  border: 1px solid rgba(233, 226, 209, 0.24); padding: 11px; background: #0a0a0c;
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.75);
+}
+.obra, .obra-antiga { display: block; width: 100%; height: auto; }
+.moldura figcaption {
+  display: flex; flex-direction: column; gap: 5px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--fumaca);
+}
+.moldura figcaption b {
+  font-family: var(--serif); font-size: 18px; font-weight: 600;
+  letter-spacing: 0.03em; text-transform: none; color: var(--osso);
+}
+.moldura.anterior { flex: 0 0 34%; transform: scale(0.9); opacity: 0.72; }
+.ficha-visitante h3 {
+  font-family: var(--mono); font-size: 12px; font-weight: 300;
+  letter-spacing: 0.28em; color: var(--osso-fraco); margin-bottom: 20px;
+}
+.ficha-visitante dl {
+  display: grid; grid-template-columns: 1fr auto; gap: 9px 20px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--cinza);
+}
+.ficha-visitante dt { color: var(--fumaca); }
+.ficha-visitante dd { color: var(--osso); text-align: right; }
+.apagar { position: absolute; left: 5vw; right: 5vw; bottom: 6vh; }
+.apagar::before {
+  content: ""; display: block; height: 1px; width: 100%;
+  background: rgba(233, 226, 209, 0.16); position: absolute; top: 0;
+}
+.apagar-barra { height: 1px; background: var(--osso); width: 0; transition: width 0.2s linear; }
+.apagar-txt {
+  display: block; margin-top: 12px; font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.26em; text-transform: uppercase; color: var(--fumaca);
+}
+
+/* ============ telas pequenas ============ */
+
+@media (max-width: 900px) {
+  .parede { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); padding: 58px 4vw 10px; gap: 9px; }
+  .ficha-tecnica { font-size: 10px; padding: 11px; }
+  .ficha-tecnica b { font-size: 15px; }
+  .ficha-tecnica .nota { font-size: 12px; }
+  .acv { grid-template-columns: 1fr; padding: 7vh 5vw 15vh; gap: 3vh; }
+  .moldura.anterior { display: none; }
+  .voice { bottom: 11vh; width: 90vw; }
+  .hud-left, .hud-right, .ficha { font-size: 10px; letter-spacing: 0.14em; }
+}
