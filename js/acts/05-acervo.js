@@ -98,6 +98,8 @@
       function concluir(tipo) {
         if (s.done) return;
         s.done = true;
+        // O museu guarda cópia da obra em qualquer um dos três caminhos.
+        if (!A.stage.__snapshot) A.stage.keepSnapshot(A.trace.snapshot(420, 0.62));
         A.stage.escolha('fim', tipo);
         s.tipo = tipo;
 

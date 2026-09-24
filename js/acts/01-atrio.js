@@ -80,6 +80,12 @@
         var second = rec.visits > 1 ? (L.entrada2 + ' ' + rec.visits + ' vezes.') : L.entrada1b;
         return A.text.queueInto(sub, second, { speed: 26, glitch: 0.2 });
       }).then(function () {
+        // A visita anterior é citada: a obra lembra do que você escolheu.
+        var ant = rec.previous && rec.previous.escolhas;
+        if (ant && ant.fim) {
+          var rot = (A.data.SELOS.fim || {})[ant.fim];
+          if (rot) A.text.queueInto(sub, 'na última vez você ' + rot + '. ' + sub.textContent, { speed: 22, glitch: 0.18 });
+        }
         pergunta.hidden = false;
         void pergunta.offsetWidth;
         pergunta.classList.add('on');

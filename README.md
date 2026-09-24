@@ -40,9 +40,10 @@ Clique em **ENTRAR** uma vez — é o gesto que libera o som no navegador.
 | normal, com as fichas técnicas e as pausas | **≈ 2 min 30** |
 | devagar, perdido em cada sala | **≈ 3 min 30** (teto) |
 
-Cada sala traz o objetivo escrito na tela, em português, com o controle exato. Ninguém
-fica preso: passados ~10 s sem progresso a sala insiste; passados 30–50 s ela **resolve
-por você** — e isso é parte da obra, não uma falha.
+O caminho mais curto de todos é o **DESVIO**: não entrar leva ~40 segundos e termina
+a obra inteira. Cada sala traz o objetivo escrito na tela, em português, com o controle
+exato. Ninguém fica preso: passados ~10 s sem progresso a sala insiste; passados 30–50 s
+ela **resolve por você** — e isso é parte da obra, não uma falha.
 
 ---
 
@@ -50,14 +51,46 @@ por você** — e isso é parte da obra, não uma falha.
 
 | sala | objetivo na tela | o que realmente acontece |
 |---|---|---|
-| **I · ÁTRIO** | abrir a porta | o círculo só fecha se você segurar o botão **no tempo da batida** |
-| **II · ARQUITETURA** | atravessar a porta | a porta foge do ponteiro: só se aproxima de olhos fechados (**ESPAÇO**) |
-| **III · LEGENDAS** | corrigir a parede | a legenda *sem objeto* pertence ao quadro vazio; ler demais corrompe o texto |
-| **IV · ESPELHO** | encostar no seu duplo | o olho repete **o seu** traço com alguns segundos de atraso |
-| **V · ACERVO** | apagar o que você deixou | a parede mostra sua ficha real: tempo, distância, hesitações |
+| **I · ÁTRIO** | abrir a porta — ou não entrar | o círculo só fecha se você segurar o botão **no tempo da batida** |
+| **II · ARQUITETURA** | atravessar uma porta | três portas (I, V, XIII) que recuam de quem olha: **ESPAÇO** fecha os olhos, ou fique **totalmente imóvel** |
+| **III · LEGENDAS** | corrigir a parede — ou recusar | a legenda *sem objeto* pertence ao quadro vazio; ler demais corrompe o texto |
+| **IV · ESPELHO** | encostar no seu duplo — ou fugir | o olho repete **o seu** traço com alguns segundos de atraso |
+| **V · ACERVO** | decidir o que fica | a parede mostra sua ficha real: tempo, distância, hesitações |
 
 **Controles:** ponteiro para olhar e desenhar · **clique e segure** (Átrio, Acervo) ·
 **ESPAÇO** (Arquitetura) · clique-clique (Legendas) · digitar não é necessário.
+
+---
+
+## Escolhas e finais
+
+Nada aqui é enfeite: **toda escolha é registrada** e reaparece no fim, impressa como
+selo. Seis decisões, em salas diferentes:
+
+| decisão | alternativas |
+|---|---|
+| responder à portaria | *sim* · *não* · *não sei* |
+| entrar ou não | entrar · **não entrar** (a obra termina aí, em outro final) |
+| qual porta atravessar | I · V · XIII |
+| como atravessar | de olhos fechados · sem se mexer |
+| a parede errada | corrigir · **recusar** |
+| o duplo | encostar · **fugir** |
+| o que fica na parede | apagar · **deixar** · **não decidir** |
+
+Isso dá **quatro desfechos distintos** na tela final:
+
+- **DESVIO** — você não entrou. Não há obra sua em parede nenhuma.
+- **DOAÇÃO** — você apagou o que fez. O museu guarda uma cópia de segurança.
+- **AQUISIÇÃO** — a obra fica na parede, com número de tombo e ficha técnica, para sempre.
+- **INDECISÃO** — você não decidiu; o acervo guardou tudo do mesmo jeito. *"não é bondade. é arquivo."*
+
+Além da cena, o fim traz um **fecho por temperamento** (obediência, recusa, meio-termo ou
+imobilidade — conforme o conjunto das suas escolhas), a **ficha da visita** com números
+reais e os **selos** de cada decisão.
+
+E a memória entre visitas guarda as escolhas: na vez seguinte a portaria diz
+*"na última vez você deixou na parede"*, o traço anterior já está na Sala do Espelho e a
+parede final mostra o que ficou.
 
 ---
 
@@ -120,12 +153,13 @@ A obra nasce com um painel de depuração, útil para quem quiser estudá-la:
 - `?debug=1` — mostra sala atual, tempos, batidas e cliques no canto inferior esquerdo.
 - `?ato=legendas` — abre direto em uma sala (`atrio`, `arquitetura`, `legendas`,
   `espelho`, `acervo`).
-- No console: `ACERVO.debug.state()` (tempos por sala), `ACERVO.debug.jump('espelho')`,
-  `ACERVO.audio.beats()`, `ACERVO.trace.snapshot()`.
+- No console: `ACERVO.debug.state()` (tempos por sala e escolhas), `ACERVO.debug.jump('espelho')`,
+  `ACERVO.audio.beats()`, `ACERVO.trace.snapshot()`, `ACERVO.stage.escolhas()`.
 
 Medição registrada de uma passagem corrida e completa (Chromium, 1600×950):
 Átrio 13,4 s · Arquitetura 6,9 s · Legendas 6,9 s · Espelho 10,8 s · Acervo 36,7 s —
-**74,8 s no total**, sem nenhum erro de página.
+**74,8 s no total**, sem nenhum erro de página. Os quatro desfechos foram verificados
+um a um, com os selos corretos em cada combinação.
 
 ---
 

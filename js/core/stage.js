@@ -18,7 +18,9 @@
     totalSeconds: record.totalSeconds || 0,
     lastAt: record.lastAt || null,
     previous: record.previous || null,
-    escolhas: record.escolhas || {}
+    /* Cada visita começa com as próprias escolhas; as da visita anterior
+       ficam guardadas em `previous.escolhas` e podem ser citadas. */
+    escolhas: {}
   };
 
   function define(act) {

@@ -38,7 +38,7 @@
 
       var s = {
         contact: 0, need: 4.0, delay: 4.5, elapsed: 0, done: false,
-        fuga: 0, fugaNeed: 5.0,
+        fuga: 0, fugaNeed: 3.5,
         dbl: { x: innerWidth / 2, y: innerHeight / 2 }, warned: false
       };
       ctx.state = s;
@@ -49,7 +49,7 @@
       ctx.objetivo({
         titulo: 'ENCOSTAR NO SEU DUPLO',
         linhas: ['o olho repete o que você fez há alguns segundos.', 'chegue perto e fique — ou fuja até ele desistir.'],
-        controle: 'aproxime o ponteiro · ou fuja por 5 s'
+        controle: 'aproxime o ponteiro · ou fuja por 3 s'
       });
       setTimeout(function () {
         ctx.say('esse olho é você, com atraso.', { soft: true, speed: 36, glitch: 0.22 });
@@ -82,7 +82,7 @@
       }
 
       var near = d < 120;
-      var longe = d > 330;
+      var longe = d > 380;
       if (near) {
         s.contact += dt;
         s.fuga = Math.max(0, s.fuga - dt * 0.5);
@@ -90,7 +90,7 @@
         if (!s.warned) { s.warned = true; ctx.say('é isso. não saia.', { soft: true, speed: 46 }); }
       } else {
         s.contact = Math.max(0, s.contact - dt * 0.5);
-        if (longe) s.fuga += dt;
+        if (longe) s.fuga += dt * 1.25;
       }
       A.audio.ink(input.speed * (near ? 1.4 : 0.7), near);
 
